@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="words" type="id" />
+    <item name="button_clear" type="id" />
+    <item name="button_hack" type="id" />
+    <item name="right_characters" type="id" />
+    <item name="word_to_enter" type="id" />
+    <item name="edit_word" type="id" />
+    <item name="word_list" type="id" />
+    <item name="correct_chars" type="id" />
+    <item name="wordlength" type="id" />
+</resources>
