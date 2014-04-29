@@ -44,11 +44,11 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:id="@id/correct_chars"/>
-        <!-- TODO change font colour -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@id/wordlength"/>
+            android:id="@id/wordlength"
+            style="@style/GreenText"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"

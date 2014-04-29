@@ -19,7 +19,15 @@
         <activity
             android:name="de.zeami.ennosuke.falloutterminalhacker.Hacking"
             android:label="@string/title_activity_hacking"
-            android:parentActivityName="de.zeami.ennosuke.falloutterminalhacker.MainActivity">
+            android:parentActivityName="de.zeami.ennosuke.falloutterminalhacker.MainActivity" >
+        </activity>
+        <activity
+            android:name="de.zeami.ennosuke.falloutterminalhacker.MainHelp"
+            android:label="@string/title_activity_main_help"
+            android:parentActivityName="de.zeami.ennosuke.falloutterminalhacker.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.zeami.ennosuke.falloutterminalhacker.MainActivity" />
         </activity>
     </application>
 

@@ -14,4 +14,13 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="GreenText.Hyperlink" parent="GreenText">
+        <item name="android:textColorLink">#00FF00</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="GreenText.ExtraLarge" parent="GreenText">
+        <item name="android:textSize">26sp</item>
+    </style>
+
 </resources>

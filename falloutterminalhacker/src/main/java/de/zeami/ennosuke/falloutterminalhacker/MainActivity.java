@@ -1,30 +1,47 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2014 Dennis Hillmann
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package de.zeami.ennosuke.falloutterminalhacker;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.KeyListener;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
+import android.support.v7.app.ActionBarActivity;
+import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class MainActivity extends ActionBarActivity implements View.OnKeyListener {
+public class MainActivity extends ActionBarActivity {
 
 
     public final static String EXTRA_WORDLIST = "de.zeami.ennosuke.falloutterminalhacker.WORDLIST";
@@ -38,11 +55,6 @@ public class MainActivity extends ActionBarActivity implements View.OnKeyListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
 
     }
 
@@ -61,8 +73,9 @@ public class MainActivity extends ActionBarActivity implements View.OnKeyListene
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        if(id == R.id.action_help) {
+            Intent intent = new Intent(this, MainHelp.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -106,6 +119,7 @@ public class MainActivity extends ActionBarActivity implements View.OnKeyListene
     public void addWord(View view)
     {
         EditText editWord = (EditText)findViewById(R.id.edit_word);
+        if(editWord == null) return;
         String word = editWord.getText().toString().toUpperCase();
 
         if(WordLength > 0 && word.length() != WordLength)
@@ -129,13 +143,34 @@ public class MainActivity extends ActionBarActivity implements View.OnKeyListene
             return;
         }
         Words.add(word);
-        String newTextList = "";
-        for(String item: Words)
-        {
-            newTextList = newTextList+item+"\n";
-        }
-        ((TextView)findViewById(R.id.word_list)).setText(newTextList);
+        refreshWordListView();
         editWord.setText("");
+    }
+
+    protected void refreshWordListView()
+    {
+        String stringToSet = "";
+        int start = 0;
+        for(String word: Words)
+        {
+            stringToSet += word+", ";
+        }
+        SpannableStringBuilder ssb = new SpannableStringBuilder(stringToSet);
+        for(String word: Words)
+        {
+           final String clickedString = word;
+           ssb.setSpan(new ClickableSpan() {
+               @Override
+               public void onClick(View view) {
+                   Words.remove(clickedString);
+                   refreshWordListView();
+               }
+           }, start, (start+word.length()),0);
+           start += word.length()+2;
+        }
+        TextView view = (TextView)findViewById(R.id.word_list);
+        view.setMovementMethod(LinkMovementMethod.getInstance());
+        view.setText(ssb, TextView.BufferType.SPANNABLE);
     }
 
     public void clearWord(View view)
@@ -145,29 +180,5 @@ public class MainActivity extends ActionBarActivity implements View.OnKeyListene
         Toast.makeText(this, getResources().getString(R.string.word_cleared), Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-        if(keyEvent.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER)
-        {
-            addWord(view);
-        }
-        return false;
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
-    }
 
 }

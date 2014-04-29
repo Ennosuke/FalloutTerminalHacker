@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ The MIT License (MIT)
+  ~
+  ~ Copyright (c) 2014 Dennis Hillmann
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
 <resources>
 
     <string name="app_name">Fallout Terminal Hacker</string>
@@ -9,9 +33,6 @@
     <string name="use_this_word">Enter this word in the terminal</string>
     <string name="how_many_right">How many characters where right?</string>
     <string name="button_proceed_hack">Proceed</string>
-    <string name="button_abort_hack">Abort</string>
-    <string name="the_solution_is">The solution is: %s !</string>
-    <string name="could_not_resolve">The solution could not be found!</string>
     <string name="Enter_one_word">Enter one word from the terminal:</string>
     <string name="add_word">Add word</string>
     <string name="your_entered_words">Your entered words:</string>
@@ -32,5 +53,15 @@
     <string name="something_went_wrong_title">Oops! Something went wrong!</string>
     <string name="something_went_wrong_message">Something went wrong along the process of hacking the terminal.\nEither I wasn\'t provided with correct informations or one of my memory banks is malfunctioning.\nPlease contact somebody that knows what they do.</string>
     <string name="wordlength">/%1$s</string>
+    <string name="help">Help</string>
+    <string name="title_activity_main_help">MainHelp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="greeting_help">Hello there,</string>
+    <string name="help_main_text">it seems to me that you need help in using me.\nFirst let me introduce myself. I\'m Afttha which is short for Automatic Fallout 3 (Three) terminal hacking application. My purpose is to help you hack terminals in the video game Fallout 3.\n\n
+    For this you only need to provide me with the words given to you from the hacking mini game and then press the start button. From there on I will give to you the word you choose in the game and only expect you to give me the number of correct characters.\n
+    If everything goes it normal way I will provide you with the correct solution normally on the third or fourth try.\n\n
+    If you make an error while inputing a word and see it after you pressed the button to add the word, fear not, because all the words in the displayed list are intelligent, if you tap one of it, it will disappear and it will look like it never was there at all.\n\n
+    If you have questions or problems you can send a mail to my developer <a href="mailto:dennis.hillmann@gmail.com">Dennis Hillmann</a>.\n
+    I wish you in his and my name fun with this little app.</string>
 
 </resources>

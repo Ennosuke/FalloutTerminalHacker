@@ -40,11 +40,11 @@
         android:layout_height="wrap_content"
         android:text="@string/your_entered_words"
         style="@style/GreenText.Large"/>
-    <!-- TODO Add method to delete one word by clicking on it -->
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@id/word_list"/>
+        android:id="@id/word_list"
+        style="@style/GreenText.Hyperlink"/>
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
